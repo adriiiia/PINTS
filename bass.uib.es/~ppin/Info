@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Summary results protein protein interaction networks</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Summary results protein protein interaction networks</h1>
+
+<!-- html table generated in R 3.0.1 by xtable 1.7-3 package -->
+
+<!-- Mon May 12 19:37:13 2014 -->
+
+<TABLE border=1>
+<TR> <TH>  </TH> <TH> Xarxa </TH> <TH> Especie </TH> <TH> Comu </TH> <TH> Data </TH> <TH> DB </TH> <TH> Nodes </TH> <TH> Arestes </TH> <TH> Diametre </TH> <TH> AutoFC </TH>  </TR>
+  <TR> <TD align="right"> 1 </TD> <TD> Rnorv </TD> <TD> Rattus Norvegicus </TD> <TD> Norway rat </TD> <TD> 31-10-2013 </TD> <TD> Database of Interacting Proteins </TD> <TD align="right"> 444 </TD> <TD align="right"> 352 </TD> <TD align="right">   7 </TD> <TD align="right"> 0.08 </TD> </TR>
+  <TR> <TD align="right"> 2 </TD> <TD> sce </TD> <TD> Saccharomyces cerevisiae </TD> <TD> baker&rsquo;s yeast </TD> <TD> 31-10-2013 </TD> <TD> Database of Interacting Proteins </TD> <TD align="right"> 5052 </TD> <TD align="right"> 22205 </TD> <TD align="right">  10 </TD> <TD align="right"> 0.19 </TD> </TR>
+  <TR> <TD align="right"> 3 </TD> <TD> Mmusc </TD> <TD> Mus Musculus </TD> <TD> house mouse </TD> <TD> 31-10-2013 </TD> <TD> Database of Interacting Proteins </TD> <TD align="right"> 1533 </TD> <TD align="right"> 1536 </TD> <TD align="right">  18 </TD> <TD align="right"> 0.10 </TD> </TR>
+  <TR> <TD align="right"> 4 </TD> <TD> Hsapi </TD> <TD> Homo Sapiens </TD> <TD> human </TD> <TD> 31-10-2013 </TD> <TD> Database of Interacting Proteins </TD> <TD align="right"> 3394 </TD> <TD align="right"> 4559 </TD> <TD align="right">  22 </TD> <TD align="right"> 0.13 </TD> </TR>
+  <TR> <TD align="right"> 5 </TD> <TD> Hpylo </TD> <TD> Helicobacter pylori </TD> <TD>  </TD> <TD> 31-10-2013 </TD> <TD> Database of Interacting Proteins </TD> <TD align="right"> 706 </TD> <TD align="right"> 1362 </TD> <TD align="right">   9 </TD> <TD align="right"> 0.70 </TD> </TR>
+  <TR> <TD align="right"> 6 </TD> <TD> Eco </TD> <TD> Escherichia coli </TD> <TD>  </TD> <TD> 31-10-2013 </TD> <TD> Database of Interacting Proteins </TD> <TD align="right"> 2684 </TD> <TD align="right"> 11605 </TD> <TD align="right">  12 </TD> <TD align="right"> 0.17 </TD> </TR>
+  <TR> <TD align="right"> 7 </TD> <TD> Dme </TD> <TD> Drosophila melanogaster </TD> <TD> fruit fly </TD> <TD> 31-10-2013 </TD> <TD> Database of Interacting Proteins </TD> <TD align="right"> 7171 </TD> <TD align="right"> 21896 </TD> <TD align="right">  13 </TD> <TD align="right"> 0.12 </TD> </TR>
+  <TR> <TD align="right"> 8 </TD> <TD> Cel </TD> <TD> Caenorhabditis elegans </TD> <TD>  </TD> <TD> 31-10-2013 </TD> <TD> Database of Interacting Proteins </TD> <TD align="right"> 2675 </TD> <TD align="right"> 4013 </TD> <TD align="right">  14 </TD> <TD align="right"> 0.46 </TD> </TR>
+   </TABLE>
+
+</body>
+
+</html>
+

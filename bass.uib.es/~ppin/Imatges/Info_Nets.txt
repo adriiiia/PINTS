@@ -1,0 +1,9 @@
+Xarxa	Especie	Comu	Data	DB	Nodes	Arestes	Diametre	AutoFC
+Rnorv	Rattus Norvegicus	Norway rat	31-10-2013	Database of Interacting Proteins	444	352	7	0.08425492
+sce	Saccharomyces cerevisiae	baker's yeast	31-10-2013	Database of Interacting Proteins	5052	22205	10	0.1859733
+Mmusc	Mus Musculus	house mouse	31-10-2013	Database of Interacting Proteins	1533	1536	18	0.09545516
+Hsapi	Homo Sapiens	human	31-10-2013	Database of Interacting Proteins	3394	4559	22	 0.1287745
+Hpylo	Helicobacter pylori		31-10-2013	Database of Interacting Proteins	706	1362	9	0.6997498
+Eco	Escherichia coli		31-10-2013	Database of Interacting Proteins	2684	11605	12	0.1748896
+Dme	Drosophila melanogaster	fruit fly	31-10-2013	Database of Interacting Proteins	7171	21896	13	0.1231557
+Cel	Caenorhabditis elegans		31-10-2013	Database of Interacting Proteins	2675	4013	14	0.4641247
