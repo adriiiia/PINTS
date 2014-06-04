@@ -1,0 +1,98 @@
+Dendograms ECScore
+========================================================
+
+
+```{r ,echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library("R.utils")
+noms = c("Rnorv","Hpylo","Mmusc","Cel","Eco","Hsapi","sce","Dme")
+EEE="Summary ECScore"
+FFF = "Summary FCScore"
+TTT= "Summary TMScore"
+EEE$pints = matrix(rep(0,times=64),nrow=8)
+colnames(EEE$pints)=noms
+rownames(EEE$pints)=noms
+EEE$pints2=EEE$piswap=EEE$isorank=EEE$pints
+FFF$pints2=FFF$piswap=FFF$isorank=FFF$pints=EEE$pints
+TTT$pints2=TTT$piswap=TTT$isorank=TTT$pints=EEE$pints
+EEE
+FFF
+TTT
+for(nom1 in noms){
+  for(nom2 in noms){
+    aPINTS=paste("Results/Alin",nom1,nom2,".RData",sep="")
+    if(isFile(aPINTS)){
+      load(paste("Results/Scores",nom1,nom2,".RData",sep=""))  
+      EEE$pints[nom1,nom2]=pintsEC
+      FFF$pints[nom1,nom2]=pintsFC
+      TTT$pints[nom1,nom2]=pintsTM
+      EEE$pints2[nom1,nom2]=pints2EC
+      FFF$pints2[nom1,nom2]=pints2FC
+      TTT$pints2[nom1,nom2]=pints2TM
+      EEE$piswap[nom1,nom2]=piswapEC
+      FFF$piswap[nom1,nom2]=piswapFC
+      TTT$piswap[nom1,nom2]=piswapTM
+      EEE$isorank[nom1,nom2]=isoEC
+      FFF$isorank[nom1,nom2]=isoFC
+      TTT$isorank[nom1,nom2]=isoTM
+      EEE$pints[nom2,nom1]=pintsEC
+      FFF$pints[nom2,nom1]=pintsFC
+      TTT$pints[nom2,nom1]=pintsTM
+      EEE$pints2[nom2,nom1]=pints2EC
+      FFF$pints2[nom2,nom1]=pints2FC
+      TTT$pints2[nom2,nom1]=pints2TM
+      EEE$piswap[nom2,nom1]=piswapEC
+      FFF$piswap[nom2,nom1]=piswapFC
+      TTT$piswap[nom2,nom1]=piswapTM
+      EEE$isorank[nom2,nom1]=isoEC
+      FFF$isorank[nom2,nom1]=isoFC
+      TTT$isorank[nom2,nom1]=isoTM
+      
+    }
+  }
+}
+uns=matrix(rep(1,times=64),nrow=8)
+dist.EC="distance"
+dist.EC$pints=uns-EEE$pints
+dist.EC$pints2=uns-EEE$pints2
+dist.EC$piswap=uns-EEE$piswap
+dist.EC$isorank=uns-EEE$isorank
+
+```
+
+
+<h2>Dendogram PINTS</h2>
+```{r ,echo=FALSE}
+#plot(hclust(as.dist(dist.EC$pints), method="complete"),axes=FALSE,ylab = "")
+```
+
+```{r ,echo=FALSE}
+
+plot(hclust(as.dist(dist.EC$pints), method="ward"),axes=FALSE,ylab = "")
+```
+
+```{r ,echo=FALSE}
+
+#plot(hclust(as.dist(dist.EC$pints), method="single"),axes=FALSE,ylab = "")
+```
+
+```{r ,echo=FALSE}
+
+#plot(hclust(as.dist(dist.EC$pints), method="average"),axes=FALSE,ylab = "")
+                    
+```
+
+<h2>Dendogram PINTS2</h2>
+```{r ,echo=FALSE}
+plot(hclust(as.dist(dist.EC$pints2),method="ward"),axes=FALSE,ylab = "")
+```
+
+<h2>Dendogram PISWAP</h2>
+```{r ,echo=FALSE}
+plot(hclust(as.dist(dist.EC$piswap),method="ward"),axes=FALSE,ylab = "")
+```
+
+<h2>Dendogram ISORANK</h2>
+```{r ,echo=FALSE}
+plot(hclust(as.dist(dist.EC$isorank),method="ward"),axes=FALSE,ylab = "")
+```
+

@@ -1,0 +1,56 @@
+EC with FC
+========================================================
+```{r}
+load("BEC.RData")
+
+```
+
+% Conserved Edges with FC < 0.1
+```{r ,results='asis'}
+mmm=as.table(BEC$PINTS)
+kable(mmm,format='html')
+
+```
+
+```{r ,results='asis'}
+mmm=as.table(BEC$NETAL)
+kable(mmm,format='html')
+
+```
+
+
+EC with FC (EC - BC)
+```{r}
+EEE2="EC with FC"
+EEE2$PINTS = EEE$pints-BEC$PINTS
+EEE2$NETAL=EEE$netal-BEC$NETAL
+
+```
+
+```{r ,results='asis'}
+mmm=as.table(EEE2$PINTS)
+kable(mmm,format='html')
+
+```
+
+```{r ,results='asis'}
+mmm=as.table(EEE2$NETAL)
+kable(mmm,format='html')
+
+```
+
+Diference
+```{r ,results='asis'}
+
+print("Diference")
+DDD=EEE2$PINTS-EEE2$NETAL
+mmm=as.table(DDD)
+kable(mmm,format='html')
+
+```
+
+Average
+```{r}
+sum(DDD)/120
+```
+

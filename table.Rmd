@@ -1,0 +1,42 @@
+ALIGNMENTS
+========================================================
+
+
+```{r ,echo=FALSE, results='asis', message=FALSE}
+noms = c("Rnorv","Hpylo","Mmusc","Cel","Eco","Hsapi","sce","Dme")
+library("R.utils")
+library("xtable")
+EEE=as.table(matrix(rep(noms,times=8),nrow=8))
+dimnames(EEE)=list(noms,noms)
+for(nom1 in noms){
+  for(nom2 in noms){
+EEE[nom1,nom2]=paste(nom1,nom2,sep="")
+}}
+for(nom1 in noms){
+  for(nom2 in noms){
+     aPINTS=paste("Results/Alin",nom1,nom2,".RData",sep="")
+  if(isFile(aPINTS)){
+    html <- paste("http://bass.uib.es/~ppin/Imatges/html/",nom1,nom2,".html",sep="")
+     aPISWAP=paste("Results/piswap_",nom1,nom2,".txt",sep="")
+    if(isFile(aPISWAP)){
+      EEE[nom1,nom2]<-paste("[<b>",nom1,nom2,"</b>](",html,")",sep="") 
+      }
+    else{
+EEE[nom1,nom2]<-paste("[",nom1,nom2,"](",html,")",sep="") 
+}
+    }
+     else{
+       if(nom1==nom2){
+         EEE[nom1,nom2]=paste("<b> ",nom1,"</b>",sep="")
+       }
+       else{
+         EEE[nom1,nom2]=""
+       }
+     }
+  }
+}
+dimnames(EEE)=list(rep("",times=8),noms)
+
+#xtable(EEE,"HTML")
+kable(EEE,format='markdown')
+```

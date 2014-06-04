@@ -1,0 +1,75 @@
+source('Scripts//PINTS.R')
+source('Scripts/Auxiliar.R')
+source('Scripts//Score.R')
+source('Scripts//CreaMatriu.R')
+nets = dir("Files/Nets")
+parelles=list()
+nets
+for(i in nets){
+  for(j in nets){
+    if(i!=j){
+      parelles[[length(parelles)+1]]=list(i,j)
+    }}}
+
+matriu=function(x){
+  n1=strsplit(x[[1]][[1]],"Adria")[[1]][1]
+  n2=strsplit(x[[2]][[1]],"Adria")[[1]][1]
+  return(paste(n1,n2,".blast",sep=""))}
+
+alin2=function(x){
+  n1=strsplit(x[[1]][[1]],"Adria")[[1]][1]
+  n2=strsplit(x[[2]][[1]],"Adria")[[1]][1]
+  return(paste("Alin",n1,n2,".RData",sep=""))}
+
+NNN=c("Cel","Dme","Eco","Hpylo","Hsapi","Mmusc","Rnorv","sce")
+EEE=matrix(0,nrow=length(NNN),ncol=length(NNN))
+FFF=matrix(0,nrow=length(NNN),ncol=length(NNN))
+TTT=matrix(0,nrow=length(NNN),ncol=length(NNN))
+dimnames(EEE)=list(NNN,NNN)
+dimnames(FFF)=list(NNN,NNN)
+dimnames(TTT)=list(NNN,NNN)
+
+EEE
+
+
+for(i in parelles){
+    dir3=paste("./Files/matrius",matriu(i),sep="/")
+    dir2=paste("./Files/Nets",i[[2]],sep="/")
+    dir1=paste("./Files/Nets",i[[1]],sep="/")
+    n1=strsplit(i[[1]][[1]],"Adria")[[1]][1]
+  	n2=strsplit(i[[2]][[1]],"Adria")[[1]][1]
+  	print(dir3)
+    ptm=proc.time()
+    mat=try(crea.matriu(dir1,dir2,dir3),TRUE)
+    if(class(mat)=="try-error"){print(matriu)}
+  	if(class(mat)!="try-error"){
+    	print("OK")
+  print(proc.time()-ptm)
+ #     print(TTT[n1,n2])
+    	save(mat,file=paste("Files/matrius/",n1,n2,".RData",sep=""))
+      load(paste("Results/Alin",n1,n2,".RData",sep=""))
+      #ec=ECscore(makeGnet(dir1),makeGnet(dir2),alin)
+    	#EEE[n1,n2]=ec
+      #EEE[n2,n1]=ec
+      #print(EEE)
+      fc=FCscore(alin)
+    	FFF[n1,n2]=fc
+    	FFF[n2,n1]=fc
+      print(FFF)
+	}
+ }
+save(FFF,"./Results/FFF.RData")
+#for(i in parelles){
+ # dir3=paste("./Results",alin2(i),sep="/")
+  #dir2=paste("./Files/Nets",i[[2]],sep="/")
+#  dir1=paste("./Files/Nets",i[[1]],sep="/")
+ # ec=try(ECscore(makeGnet(dir1),makeGnet(dir2),loadalin(dir3)))
+  #if(class(ec)=="try-error"){print(ec)}0
+#  if(class(ec)!="try-error"){
+ #   print(i[[1]])
+  #  print(i[[2]])
+   # print(ec)
+    #fc=FCscore(loadalin(dir3))
+    #print(fc)  
+  #}
+#}

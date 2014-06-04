@@ -4,7 +4,7 @@ README
 First we will see a little artificial example to see how to use the program
 
 First load the script avaliable in "http://bass.uib.es/~ppin/Scripts/PINTS.R"
-```{r }
+```{r loadPINTS}
 source("http://bass.uib.es/~ppin/Scripts/PINTS.R")
 
 ```
@@ -16,7 +16,7 @@ Then you have to create the networks and the similarity matrix, the format of th
 You can found a little example of networks and similarity matrix in http://bass.uib.es/~ppin/Files/Example
 
 Finally we can execute the program
-```{r ,results='hold'}
+```{r loadExample,results='hold'}
 net1 = "http://bass.uib.es/~ppin/Files/Example/NetExample1.txt"
 net2 = "http://bass.uib.es/~ppin/Files/Example/NetExample2.txt"
 similarity.matrix = "http://bass.uib.es/~ppin/Files/Example/SimilarityMatrixExample.txt"
@@ -24,20 +24,29 @@ alin = pints(net1,net2,similarity.matrix,verbose=TRUE)
 alin
 ```
 
-Now we have the alignment we can calculate the ECScore, for this we need two more scripts (avaliables in http://bass.uib.es/~ppin/Scripts)
-```{r ,message=FALSE}
-source("http://bass.uib.es/~ppin/Scripts/CreaScores.R")
+If the networks are small you can see the alignment
+```{r plotExample}
 source("http://bass.uib.es/~ppin/Scripts/Auxiliar.R")
+source("http://bass.uib.es/~ppin/Scripts/plotAlignment.R")
+
 Gnet1 = makeGnet(net1)
 Gnet2 = makeGnet(net2)
+plotGraph(Gnet1,color='green')
+plotGraph(Gnet2,color='red')
+plotAlignment(Gnet1,Gnet2,alin)
+```
+
+Now we have the alignment we can calculate the ECScore, for this we need two more scripts (avaliables in http://bass.uib.es/~ppin/Scripts)
+```{r ECExample,message=FALSE}
+source("http://bass.uib.es/~ppin/Scripts/CreaScores.R")
 ECscore(Gnet1,Gnet2,alin)
 
 ```
 
-<h2>Real case</h2>
+<h2>Real case 1</h2>
 
 First load all necessary scripts
-```{r , message=FALSE}
+```{r loadPINTS2, message=FALSE}
 source("http://bass.uib.es/~ppin/Scripts/PINTS.R")
 source("http://bass.uib.es/~ppin/Scripts/CreaScores.R")
 source("http://bass.uib.es/~ppin/Scripts/Auxiliar.R")
@@ -46,7 +55,7 @@ source("http://bass.uib.es/~ppin/Scripts/Auxiliar.R")
 
 Calculate the alignment, net1, net2 and similarity.matrix must be directories.
 
-```{r ,results = 'markup',eval=FALSE}
+```{r loadReal1,results = 'markup',eval=FALSE}
 net1 = "http://bass.uib.es/~ppin/Files/Nets/RnorvAdria.txt"
 net2 = "http://bass.uib.es/~ppin/Files/Nets/HpyloAdria.txt"
 similarity.matrix = "http://bass.uib.es/~ppin/Files/matrius/RnorvHpylo.blast"
@@ -54,7 +63,7 @@ similarity.matrix = "http://bass.uib.es/~ppin/Files/matrius/RnorvHpylo.blast"
 alin = pints(net1,net2,similarity.matrix)
 ```
 
-```{r ,echo=FALSE, results='hide'}
+```{r loadReal11,echo=FALSE, results='hide'}
 net1 = "http://bass.uib.es/~ppin/Files/Nets/RnorvAdria.txt"
 net2 = "http://bass.uib.es/~ppin/Files/Nets/HpyloAdria.txt"
 similarity.matrix = "http://bass.uib.es/~ppin/Files/matrius/RnorvHpylo.blast"
@@ -62,22 +71,82 @@ load("Results/AlinRnorvHpylo.RData")
 ```
 
 The alignment is a two-column table, like this
-```{r }
+```{r headAlin1}
 head(alin)
+```
+In this case we barely see anything
+```{r plotReal1}
+Gnet1 = makeGnet(net1)
+Gnet2 = makeGnet(net2)
+plotGraph(Gnet1,color='green')
+plotGraph(Gnet2,color='red')
+plotAlignment(Gnet1,Gnet2,alin)
+
 ```
 
 Once you have the alignment you can calculate several scores, for example, ECScore
-```{r ,message=FALSE }
-Gnet1 = makeGnet(net1)
-Gnet2 = makeGnet(net2)
+```{r ECReal1,message=FALSE }
 ECscore(Gnet1,Gnet2,alin)
 ```
 
 Finally if your proteins are in DIP format you can calculate the FCscore
-```{r }
+```{r FCReal1}
 specie1 = "Rnorv"
 specie2 = "Hpylo"
 FCScore(alin,specie1,specie2)
 ```
 
 The species avaliables are Rnorv,Hpylo, Mmusc, Cel, Eco, Hsapi, sce and Dme ( you can found information about the PPIN of this species in http://bass.uib.es/~ppin/Info)
+
+<h2>Real case 2</h2>
+
+First load all necessary scripts
+```{r loadPINTS3, message=FALSE}
+source("http://bass.uib.es/~ppin/Scripts/PINTS.R")
+source("http://bass.uib.es/~ppin/Scripts/CreaScores.R")
+source("http://bass.uib.es/~ppin/Scripts/Auxiliar.R")
+
+```
+
+Calculate the alignment, net1, net2 and similarity.matrix must be directories.
+
+```{r loadReal2,results = 'markup',eval=FALSE}
+net1 = "http://bass.uib.es/~ppin/Files/Nets/sceAdria.txt"
+net2 = "http://bass.uib.es/~ppin/Files/Nets/DmeAdria.txt"
+similarity.matrix = "http://bass.uib.es/~ppin/Files/matrius/sceDme.blast"
+
+alin = pints(net1,net2,similarity.matrix)
+```
+
+```{r loadReal21,echo=FALSE, results='hide'}
+net1 = "http://bass.uib.es/~ppin/Files/Nets/sceAdria.txt"
+net2 = "http://bass.uib.es/~ppin/Files/Nets/DmeAdria.txt"
+similarity.matrix = "http://bass.uib.es/~ppin/Files/matrius/sceDme.blast"
+load("Results/AlinsceDme.RData")
+```
+
+The alignment is a two-column table, like this
+```{r headAlin2}
+head(alin)
+```
+In this case we see anything
+```{r plotReal2}
+Gnet1 = makeGnet(net1)
+Gnet2 = makeGnet(net2)
+plotGraph(Gnet1,color='green')
+plotGraph(Gnet2,color='red')
+plotAlignment(Gnet1,Gnet2,alin)
+
+```
+
+Once you have the alignment you can calculate several scores, for example, ECScore
+```{r ECReal2,message=FALSE }
+ECscore(Gnet1,Gnet2,alin)
+```
+
+Finally if your proteins are in DIP format you can calculate the FCscore
+```{r FCReal2}
+specie1 = "sce"
+specie2 = "Dme"
+FCScore(alin,specie1,specie2)
+```

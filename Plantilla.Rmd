@@ -1,0 +1,87 @@
+Alignment Statistic
+========================================================
+
+
+```{r carrega, echo=FALSE, results='hide',warning=FALSE,error=FALSE, message=FALSE}
+source("Scripts/Auxiliar.R")
+source("Scripts//CreaScores.R")
+source("Scripts//Imprimir.R")
+load("BEC.RData")
+dades =read.table("Dades.txt")
+info =read.csv("Files/Nets/Info_Nets.txt", sep ="\t")
+
+nom1 = as.character(dades[1,1])
+nom2 = as.character(dades[2,1])
+net1 = paste("Files/Nets/",nom1,"Adria.txt",sep="")
+net2 = paste("Files/Nets/",nom2,"Adria.txt",sep="")
+#piswapEC=0
+#pints2EC=pints2FC=pints2TM=0
+#pints2EC=pints2FC=pints2TM=0
+#creaScore(nom1,nom2)
+scores = paste("Results/Scores2",nom1,nom2,".RData",sep="")
+load(scores)
+pintsEC=pintsEC-BEC$PINTS[nom1,nom2]
+netalEC=netalEC-BEC$NETAL[nom1,nom2]
+isoEC=isoEC-BEC$ISORANK[nom1,nom2]
+
+#if(piswapEC==0){
+ #creaScore2(nom1,nom2)
+#load(scores)
+
+#}
+
+```
+
+
+```{r , echo=FALSE,results='hide'}
+info1=info[which(info$Xarxa==nom1),]
+info2=info[which(info$Xarxa==nom2),]
+
+```
+First Network 
+
+Information:
+  * Specie: `r info1$Especie`
+  * Common name: `r info1$Comu`
+  * Data base: `r info1$DB`
+  * Date: `r info1$Data`
+  
+Statistics:
+  * Nodes: `r info1$Nodes`
+  * Edges: `r info1$Arestes`
+  * Diameter: `r info1$Diametre`
+  * InteractionFC: `r info1$AutoFC`
+  
+Second Network 
+
+Information:
+  * Specie: `r info2$Especie`
+  * Common name: `r info2$Comu`
+  * Data base: `r info2$DB`
+  * Date: `r info2$Data`
+  
+Statistics:
+  * Nodes: `r info2$Nodes`
+  * Edges: `r info2$Arestes`
+  * Diameter: `r info2$Diametre`
+  * InteractionFC: `r info2$AutoFC`
+
+SCORES
+
+
+```{r ,echo=FALSE,results='asis'}
+ccc = c("ECScore","FCScore","TMScore")
+fff = c("PINTS","ISORANK","NETAL")
+mmm = matrix(c(pintsEC,pintsFC,pintsTM,isoEC,isoFC,isoTM,netalEC,netalFC,netalTM),nrow=3,byrow=TRUE)
+mmm=as.table(mmm)
+dimnames(mmm) = list(fff,ccc)
+kable(mmm,format='html')
+```
+
+
+```{r , echo=FALSE}
+#, names.arg=c("PEC","P2EC","P3EC","P4EC","IPEC","IEC","NEC","PFC","IPFC","P2FC","IFC","PTM","IPTM","P2TM","ITM")
+mat = matrix(c(pintsEC,pintsFC,pintsTM,isoEC,isoFC,isoTM,netalEC,netalFC,netalTM),nrow=3,byrow=TRUE)
+barplot(mat,col=c("darkgreen","darkred","black"), ylim=c(0,1), beside=TRUE)
+```
+

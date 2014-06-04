@@ -1,0 +1,162 @@
+Summary Scores
+========================================================
+
+```{r ,echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library("R.utils")
+source("Scripts/Average.R")
+source("Scripts/TM2.R")
+load("BEC.RData")
+noms = c("Rnorv","Hpylo","Mmusc","Cel","Eco","Hsapi","sce","Dme")
+EEE="Summary ECScore"
+FFF = "Summary FCScore"
+TTT= "Summary TMScore with 20% significance"
+TTT2= "Summary TMScore"
+
+EEE$pints = matrix(rep(1,times=64),nrow=8)
+colnames(EEE$pints)=noms
+rownames(EEE$pints)=noms
+EEE$pints2=EEE$piswap=EEE$isorank=EEE$netal=EEE$pints
+FFF$pints2=FFF$piswap=FFF$isorank=FFF$pints=FFF$netal=EEE$pints
+TTT$pints2=TTT$piswap=TTT$isorank=TTT$pints=TTT$netal=EEE$pints
+EEE
+FFF
+TTT
+for(nom1 in noms){
+  for(nom2 in noms){
+    aPINTS=paste("Results/Alin",nom1,nom2,".RData",sep="")
+    if(isFile(aPINTS)){
+      load(paste("Results/Scores2",nom1,nom2,".RData",sep=""))  
+      EEE$pints[nom1,nom2]=pintsEC-BEC$PINTS[nom1,nom2]
+      FFF$pints[nom1,nom2]=pintsFC
+      TTT$pints[nom1,nom2]=pintsTM
+      EEE$pints2[nom1,nom2]=pints2EC
+      FFF$pints2[nom1,nom2]=pints2FC
+      TTT$pints2[nom1,nom2]=pints2TM
+      EEE$piswap[nom1,nom2]=piswapEC-BEC$PISWAP[nom1,nom2]
+      FFF$piswap[nom1,nom2]=piswapFC
+      TTT$piswap[nom1,nom2]=piswapTM
+      EEE$isorank[nom1,nom2]=isoEC-BEC$ISORANK[nom1,nom2]
+      FFF$isorank[nom1,nom2]=isoFC
+      TTT$isorank[nom1,nom2]=isoTM
+      EEE$netal[nom1,nom2]=netalEC-BEC$NETAL[nom1,nom2]
+      FFF$netal[nom1,nom2]=netalFC
+      TTT$netal[nom1,nom2]=netalTM
+      EEE$pints[nom2,nom1]=pintsEC-BEC$PINTS[nom1,nom2]
+      FFF$pints[nom2,nom1]=pintsFC
+      TTT$pints[nom2,nom1]=pintsTM
+      EEE$pints2[nom2,nom1]=pints2EC
+      FFF$pints2[nom2,nom1]=pints2FC
+      TTT$pints2[nom2,nom1]=pints2TM
+      EEE$piswap[nom2,nom1]=piswapEC-BEC$PISWAP[nom1,nom2]
+      FFF$piswap[nom2,nom1]=piswapFC
+      TTT$piswap[nom2,nom1]=piswapTM
+      EEE$isorank[nom2,nom1]=isoEC-BEC$ISORANK[nom1,nom2]
+      FFF$isorank[nom2,nom1]=isoFC
+      TTT$isorank[nom2,nom1]=isoTM
+      EEE$netal[nom2,nom1]=netalEC-BEC$NETAL[nom1,nom2]
+      FFF$netal[nom2,nom1]=netalFC
+      TTT$netal[nom2,nom1]=netalTM
+
+    }
+  }
+}
+TTT2$pints=TTT$pints*TM2$pints/TM2$pints
+TTT2$netal=TTT$netal*TM2$netal/TM2$netal
+TTT2$pints2=TTT$pints2*TM2$pints2/TM2$pints2
+TTT2$piswap=TTT$piswap*TM2$piswap/TM2$piswap
+TTT2$isorank=TTT$isorank*TM2$isorank/TM2$isorank
+EEE$pints=EEE$pints*EEE$pints/EEE$pints
+EEE$pints2=EEE$pints2*EEE$pints2/EEE$pints2
+EEE$isorank=EEE$isorank*EEE$isorank/EEE$isorank
+EEE$piswap=EEE$piswap*EEE$piswap/EEE$piswap
+FFF$pints=FFF$pints*FFF$pints/FFF$pints
+FFF$pints2=FFF$pints2*FFF$pints2/FFF$pints2
+FFF$isorank=FFF$isorank*FFF$isorank/FFF$isorank
+FFF$piswap=FFF$piswap*FFF$piswap/FFF$piswap
+TTT$isorank=TTT$isorank*TTT$isorank/TTT$isorank
+TTT$piswap=TTT$piswap*TTT$piswap/TTT$piswap
+
+```
+
+
+<h2>ECSCORE</h2>
+<h3>PINTS</h3>
+```{r ,echo=FALSE,results='asis'}
+pEC=as.table(EEE$pints)
+kable(pEC,format='html')
+```
+<h3>ISORANK</h3>
+```{r ,echo=FALSE,results='asis'}
+mmm=as.table(EEE$isorank)
+kable(mmm,format='html')
+```
+
+<h3>NETAL</h3>
+```{r ,echo=FALSE,results='asis'}
+mmm=as.table(EEE$netal)
+kable(mmm,format='html')
+```
+
+<h2>FCSCORE</h2>
+<h3>PINTS</h3>
+```{r ,echo=FALSE,results='asis'}
+mmm=as.table(FFF$pints)
+kable(mmm,format='html')
+```
+
+<h3>ISORANK</h3>
+```{r ,echo=FALSE,results='asis'}
+mmm=as.table(FFF$isorank)
+kable(mmm,format='html')
+```
+
+<h3>NETAL</h3>
+```{r ,echo=FALSE,results='asis'}
+mmm=as.table(FFF$netal)
+kable(mmm,format='html')
+```
+
+<h2>TMSCORE(ALL)</h2>
+<h3>PINTS</h3>
+```{r ,echo=FALSE,results='asis'}
+mmm=as.table(TTT$pints)
+kable(mmm,format='html')
+```
+<h3>ISORANK</h3>
+```{r ,echo=FALSE,results='asis'}
+mmm=as.table(TTT$isorank)
+kable(mmm,format='html')
+```
+<h3>NETAL</h3>
+```{r ,echo=FALSE,results='asis'}
+mmm=as.table(TTT$netal)
+kable(mmm,format='html')
+```
+
+<h2>TMSCORE (20% SIGNIFICANCE)</h2>
+<h3>PINTS</h3>
+```{r ,echo=FALSE,results='asis'}
+mmm=as.table(TTT2$pints)
+kable(mmm,format='html')
+```
+<h3>ISORANK</h3>
+```{r ,echo=FALSE,results='asis'}
+mmm=as.table(TTT2$isorank)
+kable(mmm,format='html')
+```
+
+<h3>NETAL</h3>
+```{r ,echo=FALSE,results='asis'}
+mmm=as.table(TTT2$netal)
+kable(mmm,format='html')
+```
+
+<h2>Average difference</h2>
+```{r ,echo=FALSE,results='asis'}
+ccc = c("ECScore","FCScore","TMScore (ALL)","Average")
+fff = c("ISORANK","NETAL")
+mmm = matrix(c(mitja.iso$EC,mitja.iso$FC,mitja.iso$TM,mitja$iso,mitja.netal$EC,mitja.netal$FC,mitja.netal$TM,mitja$netal),nrow=2,byrow=TRUE)
+mmm=as.table(mmm)
+dimnames(mmm) = list(fff,ccc)
+kable(mmm,format='html')
+```

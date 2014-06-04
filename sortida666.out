@@ -1,0 +1,318 @@
+
+R version 3.1.0 beta (2014-03-28 r65330) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+Attempting to load the environment ‘package:R.utils’
+Loading required package: R.methodsS3
+
+Attaching package: ‘R.oo’
+
+The following objects are masked from ‘package:methods’:
+
+    getClasses, getMethods
+
+The following objects are masked from ‘package:base’:
+
+    attach, detach, gc, load, save
+
+
+Attaching package: ‘R.utils’
+
+The following objects are masked from ‘package:base’:
+
+    cat, commandArgs, getOption, inherits, isOpen, parse, warnings
+
+[Previously saved workspace restored]
+
+> library("R.utils")
+> library("igraph")
+
+Attaching package: ‘igraph’
+
+The following object is masked from ‘package:R.oo’:
+
+    hierarchy
+
+> source("Scripts/PINTS.R")
+Loading required package: parallel
+> nets = dir("Files/Nets")
+> parelles=list()
+> for(i in nets){
++   for(j in nets){
++     if(i!=j){
++       parelles[[length(parelles)+1]]=list(i,j)
++     }}}
+> 
+> matriu=function(x){
++   n1=strsplit(x[[1]][[1]],"Adria")[[1]][1]
++   n2=strsplit(x[[2]][[1]],"Adria")[[1]][1]
++   return(paste(n1,n2,".blast",sep=""))}
+> 
+> 
+> 
+> for(i in parelles){
++     dir3=paste("./Files/matrius",matriu(i),sep="/")
++     dir2=paste("./Files/Nets",i[[2]],sep="/")
++     dir1=paste("./Files/Nets",i[[1]],sep="/")
++     n1=strsplit(i[[1]][[1]],"Adria")[[1]][1]
++  	n2=strsplit(i[[2]][[1]],"Adria")[[1]][1]
++   	print(dir3)
++ if(!isFile(paste("Results/Alin",n1,n2,".RData",sep=""))){
++   	alin=try(pints(dir1,dir2,dir3),TRUE)
++     if(class(alin)=="try-error"){print(alin)}
++   	if(class(alin)!="try-error"){
++     	print("OK")
++      	save(alin,file=paste("Results/Alin",n1,n2,".RData",sep=""))
++  	}
++  }
++ }
+[1] "./Files/matrius/CelDme.blast"
+[1] "./Files/matrius/CelEco.blast"
+[1] "./Files/matrius/CelHpylo.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/CelHsapi.blast"
+[1] "./Files/matrius/CelMmusc.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/CelRnorv.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/Celsce.blast"
+[1] "./Files/matrius/DmeCel.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/DmeEco.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/DmeHpylo.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/DmeHsapi.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/DmeMmusc.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/DmeRnorv.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/Dmesce.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/EcoCel.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/EcoDme.blast"
+[1] "./Files/matrius/EcoHpylo.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/EcoHsapi.blast"
+[1] "./Files/matrius/EcoMmusc.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/EcoRnorv.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/Ecosce.blast"
+[1] "./Files/matrius/HpyloCel.blast"
+[1] "./Files/matrius/HpyloDme.blast"
+[1] "./Files/matrius/HpyloEco.blast"
+[1] "./Files/matrius/HpyloHsapi.blast"
+[1] "./Files/matrius/HpyloMmusc.blast"
+[1] "./Files/matrius/HpyloRnorv.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/Hpylosce.blast"
+[1] "./Files/matrius/HsapiCel.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/HsapiDme.blast"
+[1] "./Files/matrius/HsapiEco.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/HsapiHpylo.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/HsapiMmusc.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/HsapiRnorv.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/Hsapisce.blast"
+[1] "./Files/matrius/MmuscCel.blast"
+[1] "./Files/matrius/MmuscDme.blast"
+[1] "./Files/matrius/MmuscEco.blast"
+[1] "./Files/matrius/MmuscHpylo.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/MmuscHsapi.blast"
+[1] "./Files/matrius/MmuscRnorv.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/Mmuscsce.blast"
+[1] "./Files/matrius/RnorvCel.blast"
+[1] "./Files/matrius/RnorvDme.blast"
+[1] "./Files/matrius/RnorvEco.blast"
+[1] "./Files/matrius/RnorvHpylo.blast"
+[1] "./Files/matrius/RnorvHsapi.blast"
+[1] "./Files/matrius/RnorvMmusc.blast"
+[1] "./Files/matrius/Rnorvsce.blast"
+[1] "./Files/matrius/sceCel.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/sceDme.blast"
+[1] "Comença M"
+[1] 13
+[1] "M Ok"
+[1] "Ha llegit"
+[1] "iiii"
+[1] 1
+[1] "iiii"
+[1] 2
+[1] "iiii"
+[1] 3
+[1] "iiii"
+[1] 4
+[1] "iiii"
+[1] 5
+[1] "iiii"
+[1] 6
+[1] "iiii"
+[1] 7
+[1] "iiii"
+[1] 8
+[1] "iiii"
+[1] 9
+[1] "iiii"
+[1] 10
+[1] "iiii"
+[1] 11
+[1] "iiii"
+[1] 12
+[1] "iiii"
+[1] 13
+[1] "OK"
+[1] "./Files/matrius/sceEco.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/sceHpylo.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/sceHsapi.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/sceMmusc.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+[1] "./Files/matrius/sceRnorv.blast"
+[1] "Error in file(file, \"rt\") : cannot open the connection\n"
+attr(,"class")
+[1] "try-error"
+attr(,"condition")
+<simpleError in file(file, "rt"): cannot open the connection>
+There were 28 warnings (use warnings() to see them)
+> 
+> proc.time()
+    user   system  elapsed 
+66609.44 23200.60 26245.64 
+Warning message:
+In save(list = ls(envir = .GlobalEnv, all.names = TRUE), file = outfile,  :
+  'package:R.utils' may not be available when loading
